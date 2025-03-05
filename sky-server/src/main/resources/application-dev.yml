@@ -7,3 +7,10 @@ sky:
     username: root
     #表示密码为空
     password: ""
+
+
+  alioss:
+    endpoint: oss-cn-beijing.aliyuncs.com
+    access-key-id: LTAI5tB8mDcfQk5xdHRrXZ8u
+    access-key-secret: BLKlQSpxVpvC8YvhZyPs6ZuxjTn8LU
+    bucket-name: xiyou-bucket
