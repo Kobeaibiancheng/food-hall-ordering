@@ -14,3 +14,12 @@ sky:
     access-key-id: LTAI5tB8mDcfQk5xdHRrXZ8u
     access-key-secret: BLKlQSpxVpvC8YvhZyPs6ZuxjTn8LU
     bucket-name: xiyou-bucket
+
+
+  redis:
+    host: localhost
+    port: 6379
+    #表示密码为空
+    password: ""
+    #使用redis 16个库中的编号为10的库
+    database: 10
