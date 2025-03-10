@@ -23,3 +23,7 @@ sky:
     password: ""
     #使用redis 16个库中的编号为10的库
     database: 10
+
+  wechat:
+    appid: wxb29987b155e8333a
+    secret: 869e7dc23a266b94d246e4e0ce68dd9f
