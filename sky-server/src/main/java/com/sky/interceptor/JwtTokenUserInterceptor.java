@@ -1,5 +1,4 @@
 package com.sky.interceptor;
-
 import com.sky.constant.JwtClaimsConstant;
 import com.sky.context.BaseContext;
 import com.sky.properties.JwtProperties;
@@ -34,10 +33,6 @@ public class JwtTokenUserInterceptor implements HandlerInterceptor {
      * @throws Exception
      */
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
-        System.out.println("当前线程id：" + Thread.currentThread().getId());
-
-
         //判断当前拦截到的是Controller的方法还是其他资源
         if (!(handler instanceof HandlerMethod)) {
             //当前拦截到的不是动态方法，直接放行
@@ -52,7 +47,7 @@ public class JwtTokenUserInterceptor implements HandlerInterceptor {
             log.info("jwt校验:{}", token);
             Claims claims = JwtUtil.parseJWT(jwtProperties.getUserSecretKey(), token);
             Long userId = Long.valueOf(claims.get(JwtClaimsConstant.USER_ID).toString());
-            log.info("当前用户id：", userId);
+            log.info("当前用户的id：", userId);
             BaseContext.setCurrentId(userId);
             //3、通过，放行
             return true;
