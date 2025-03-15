@@ -2,6 +2,7 @@ package com.sky.service.impl;
 
 import com.sky.constant.MessageConstant;
 import com.sky.context.BaseContext;
+import com.sky.dto.OrdersPaymentDTO;
 import com.sky.dto.OrdersSubmitDTO;
 import com.sky.entity.AddressBook;
 import com.sky.entity.OrderDetail;
@@ -95,5 +96,25 @@ public class OrderServiceImpl implements OrderService {
                 .orderAmount(orders.getAmount())
                 .build();
         return orderSubmitVO;
+    }
+
+
+    /**
+     * 用户支付订单
+     * @param ordersPaymentDTO
+     */
+    public void orderPayment(OrdersPaymentDTO ordersPaymentDTO){
+        String orderNumber = ordersPaymentDTO.getOrderNumber();
+        // 根据订单号查询订单
+        Orders ordersDB = orderMapper.getByNumber(orderNumber);
+
+        // 根据订单id更新订单的状态、支付方式、支付状态、结账时间
+        Orders orders = Orders.builder()
+                .id(ordersDB.getId())
+                .status(Orders.TO_BE_CONFIRMED)
+                .payStatus(Orders.PAID)
+                .checkoutTime(LocalDateTime.now())
+                .build();
+        orderMapper.update(orders);
     }
 }
